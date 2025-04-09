@@ -1,16 +1,19 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
+import express from "express";
+import cors from "cors";
+import cookieParser from  "cookie-parser"
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
+/*import templeRoutes from "./routes/temples.js";
+import commentRoutes from "./routes/comments.js"; */
+
 const port = 8080;
-
-app.use(cors())
+const app = express();
 app.use(express.json());
+app.use(cors())
+app.use(cookieParser)
 
-//console.log(app)
-
-app.get('/', (req, res) => {
-    res.send('Hello from our server!')
-})
+app.use("/api/auth", authRoutes)
+app.use("/api/users", userRoutes)
 
 app.listen(port, () => {
       console.log(`server listening on port ${port}`)
