@@ -1,0 +1,19 @@
+@import "../../style.scss";
+
+.banner {
+  @include themify($themes) {
+    position: sticky;
+    top: 70px;
+    z-index: 998;
+    background-color: themed("bgSoft");
+    //border-bottom: 1px solid themed("border");
+    padding: 0 0 20px   ;
+    height: 370px;
+
+    .map {
+      height: 100%;
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+}

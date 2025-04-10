@@ -1,8 +1,20 @@
 import React from 'react'
 import "./home.scss";
+import Posts from "../../components/posts/Posts"
+import Banner from "../../components/banner/Banner"
 
-export const Home = () => {
+const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <div className="banner">
+      <Banner />
+      </div>
+    <div className="home">
+      
+      <Posts/>
+    </div>
+    </div>
   )
 }
+
+export default Home
