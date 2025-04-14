@@ -41,6 +41,10 @@ export const register = (req, res) => {
         req.body.password,
         data[0].password
       );
+      /* console.log("Plain Password:", req.body.password);
+        console.log("Hashed Password from DB:", data[0].password);
+        console.log("Match:", bcrypt.compareSync(req.body.password, data[0].password)); */
+
   
       if (!checkPassword)
         return res.status(400).json("Wrong password or username!");
