@@ -7,9 +7,16 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router";
 import Comments from "../comments/Comments";
 import { useState } from "react";
+import moment from "moment";
+//import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+//import { makeRequest } from "../../axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
+
+  const { currentUser } = useContext(AuthContext);
 
   //TEMPORARY
   const liked = true;
@@ -27,14 +34,14 @@ const Post = ({ post }) => {
               >
                 <span className="name">{post.username}</span>
               </Link>
-              <span className="date">1 min ago</span>
+              <span className="date">{moment(post.created_at).fromNow()}</span>
             </div>
           </div>
           <MoreHorizIcon />
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={post.image} alt="" />
+          <img src={"/upload/" + post.image} alt="" />
         </div>
         <div className="info">
           <div className="item">
