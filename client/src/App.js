@@ -1,18 +1,18 @@
-/* import axios from 'axios'; */
-/* import ReactDOM from "react-dom/client"; */
-import { createBrowserRouter, RouterProvider, Routes, Route, Outlet, Navigate } from "react-router";
+
+import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router";
 import './App.css';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Home from './pages/home/Home';
 import Profile from './pages/profile/Profile';
 import Navbar from "./components/navbar/Navbar";
-import Banner from "./components/banner/Banner";
 import LeftBar from "./components/leftbar/Leftbar";
 import RightBar from "./components/rightbar/Rightbar";
 import "./style.scss";
 import { useContext } from "react";
+import { AuthContext } from "./context/authContext";
 import { DarkModeContext } from "./context/darkModeContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import 'leaflet/dist/leaflet.css';
 
 
@@ -27,11 +27,14 @@ import 'leaflet/dist/leaflet.css';
 function App() {
 
   const { darkMode } = useContext(DarkModeContext);
-  console.log(darkMode)
-  const currentUser = true;
+
+  const { currentUser } = useContext(AuthContext);
+
+  const queryClient = new QueryClient();
 
   const Layout = () => {
     return (
+      <QueryClientProvider client={queryClient}>
       <div className={`theme-${darkMode ? "dark" : "light"}`}>
         <Navbar />
         <div style={{ display: "flex" }}>
@@ -42,6 +45,7 @@ function App() {
           <RightBar />
         </div>
       </div>
+      </QueryClientProvider>
     );
   };
 
@@ -56,7 +60,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <ProtectedRoute>
+          <Layout />
+        </ProtectedRoute>
+      ),
       children: [
         {
           path: "/",
@@ -64,11 +72,7 @@ function App() {
         },
         {
           path: "/profile/:id",          
-          element: (
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>    
-          ),
+          element: <Profile />,
         },
       ],
     },

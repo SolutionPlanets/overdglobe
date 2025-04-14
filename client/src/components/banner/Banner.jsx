@@ -2,7 +2,7 @@ import React from 'react'
 import "./banner.scss"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import marker from "../../assets/marker-40.png";
+//import marker from "../../assets/marker-40.png";
 
 // Optional custom marker icon
 const customIcon = new L.Icon({

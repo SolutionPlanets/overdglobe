@@ -1,23 +1,24 @@
 import "./share.scss";
 import Image from "../../assets/img.png";
 import Map from "../../assets/map.png";
-import Friend from "../../assets/friend.png";
-/* import { useContext } from "react";
-import { AuthContext } from "../../context/authContext"; */
+import Friend from "../../assets/friends.png";
+import userIcon from "../../assets/user_icon.png";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 const Share = () => {
 
-  /* const {currentUser} = useContext(AuthContext) */
+  const {currentUser} = useContext(AuthContext)
   return (
     <div className="share">
       <div className="container">
         <div className="top">
           <img
-            src=""
+            src={userIcon}
             alt=""
           />
-          <input type="text" placeholder={`What's on your mind, Foram?`} />
-          {/* <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} /> */}
+          <input type="text" placeholder={currentUser ? `What's on your mind, ${currentUser.username}?` : "Login to write a post" }
+          disabled={!currentUser} />
         </div>
         <hr />
         <div className="bottom">
@@ -39,7 +40,7 @@ const Share = () => {
             </div>
           </div>
           <div className="right">
-            <button>Share</button>
+          <button disabled={!currentUser}>Share</button>
           </div>
         </div>
       </div>

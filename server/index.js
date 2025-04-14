@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from  "cookie-parser"
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 /*import templeRoutes from "./routes/temples.js";
 import commentRoutes from "./routes/comments.js"; */
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
+app.use("/api/posts", postRoutes)
 
 app.listen(port, () => {
       console.log(`server listening on port ${port}`)

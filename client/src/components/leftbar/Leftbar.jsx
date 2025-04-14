@@ -1,7 +1,6 @@
-import React from 'react'
 import "./leftbar.scss";
-/* import { AuthContext } from "../../context/authContext";
-import { useContext } from "react"; */
+import { AuthContext } from "../../context/authContext";
+import { useContext } from "react";
 import userIcon from "../../assets/user_icon.png";
 import Friends from "../../assets/friends.png";
 import Group from "../../assets/group.png";
@@ -11,7 +10,7 @@ import Market from "../../assets/market.png";
 
 const Leftbar = () => {
 
-  /* const { currentUser } = useContext(AuthContext); */
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className="leftbar">
@@ -22,7 +21,7 @@ const Leftbar = () => {
               src={userIcon}
               alt=""
             />
-            <span>Foram Doshi</span>
+            <span>{currentUser.username}</span>
           </div>
           <div className="item">
             <img src={Friends} alt="" />

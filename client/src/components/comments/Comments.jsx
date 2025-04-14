@@ -1,9 +1,9 @@
-import { useContext } from "react";
+//import { useContext } from "react";
 import "./comments.scss";
-import { AuthContext } from "../../context/authContext";
+//import { AuthContext } from "../../context/authContext";
 
 const Comments = () => {
-  /* const { currentUser } = useContext(AuthContext); */
+  //sconst { currentUser } = useContext(AuthContext);
   //Temporary
   const comments = [
     {

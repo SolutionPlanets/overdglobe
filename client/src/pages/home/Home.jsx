@@ -2,6 +2,7 @@ import React from 'react'
 import "./home.scss";
 import Posts from "../../components/posts/Posts"
 import Banner from "../../components/banner/Banner"
+import Share from "../../components/share/Share"
 
 const Home = () => {
   return (
@@ -10,7 +11,7 @@ const Home = () => {
       <Banner />
       </div>
     <div className="home">
-      
+      <Share />
       <Posts/>
     </div>
     </div>
