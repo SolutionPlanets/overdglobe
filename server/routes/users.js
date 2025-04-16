@@ -1,13 +1,13 @@
 import express from "express";
-import { getUser } from "../controllers/user.js";
+import { getUser, updateUser } from "../controllers/user.js";
 
 const router = express.Router()
 
-router.get("/test", (req, res)=>{
+/* router.get("/test", (req, res)=>{
     res.send("response of user get request")
-})
+}) */
 
-//router.get("/find/:userId", getUser)
-//router.put("/", updateUser)
+router.get("/find/:userId", getUser)
+router.put("/", updateUser)
 
 export default router
