@@ -5,9 +5,11 @@ import multer from "multer";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
+import commentRoutes from "./routes/comments.js";
+import likeRoutes from "./routes/likes.js";
 
 /*import templeRoutes from "./routes/temples.js";
-import commentRoutes from "./routes/comments.js"; */
+ */
 
 const port = 8080;
 const app = express();
@@ -45,6 +47,9 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/posts", postRoutes)
+app.use("/api/comments", commentRoutes)
+app.use("/api/likes", likeRoutes);
+
 
 app.listen(port, () => {
       console.log(`server listening on port ${port}`)

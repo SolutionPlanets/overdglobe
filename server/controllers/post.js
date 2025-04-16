@@ -3,12 +3,12 @@ import jwt from "jsonwebtoken";
 import moment from "moment";
 
 export const getPosts = (req, res) => {
-    const q = `SELECT p.*, u.id AS userId, username FROM posts AS p JOIN users AS u ON (u.id = p.userId) ORDER BY p.created_at DESC`
+    /* const q = `SELECT p.*, u.id AS userId, username, profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId) ORDER BY p.created_at DESC`
     db.query(q, (err, data) => {
         if (err) return res.status(500).json(err);
         return res.status(200).json(data);
-      });
-  /* const userId = req.query.userId;
+      }); */
+  const userId = req.query.userId;
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in!");
 
@@ -17,12 +17,12 @@ export const getPosts = (req, res) => {
 
     console.log(userId);
 
-    const q =
-      userId !== "undefined"
-        ? `SELECT p.*, u.id AS userId, username FROM posts AS p JOIN users AS u ON (u.id = p.userId) WHERE p.userId = ? ORDER BY p.createdAt DESC`
-        : `SELECT p.*, u.id AS userId, username FROM posts AS p JOIN users AS u ON (u.id = p.userId)
+    const q = `SELECT p.*, u.id AS userId, username, profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId) ORDER BY p.created_at DESC`
+      /* userId !== "undefined"
+        ? `SELECT p.*, u.id AS userId, username, profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId) WHERE p.userId = ? ORDER BY p.created_at DESC`
+        : `SELECT p.*, u.id AS userId, username,profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId)
     LEFT JOIN relationships AS r ON (p.userId = r.followedUserId) WHERE r.followerUserId= ? OR p.userId =?
-    ORDER BY p.createdAt DESC`;
+    ORDER BY p.created_at DESC`; */
 
     const values =
       userId !== "undefined" ? [userId] : [userInfo.id, userInfo.id];
@@ -31,7 +31,7 @@ export const getPosts = (req, res) => {
       if (err) return res.status(500).json(err);
       return res.status(200).json(data);
     });
-  }); */
+  });
 };
 
 export const addPost = (req, res) => {
